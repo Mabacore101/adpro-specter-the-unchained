@@ -5,3 +5,6 @@ AMQP (Advanced Message Queuing Protocol) is a standard for message-oriented midd
 a. guest:guest — This part represents the username and password for authenticating with the RabbitMQ broker. The first guest is the username, and the second guest is the password. This is the default username/password for RabbitMQ unless changed.
 
 b. localhost:5672 — localhost is the host address where RabbitMQ broker is running. In this case, it is our local machine. While 5672 is the port number where RabbitMQ broker is listening for AMQP conncections. 
+
+- The large number of queues is caused by the high volume of messages sent by the publisher to the message broker, while not all of them have been processed by the subscriber, which is slower than the publisher. As a result, all unprocessed messages are stored in the queue. On my machine, the total queue count was 11. This happens because the subscriber takes longer to handle each event in the message queue, leading to a buildup of messages since the publisher publishes messages faster than the subscriber can process them.
+![alt text](SubscriberSS1.png)
